@@ -1,0 +1,17 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2024-04-27T22:24:54-05:00",
+  "id": "interactive-app-react",
+  "duration": 70,
+  "title": "Codelab: Creando Aplicaciones Interactivas con ReactJS",
+  "summary": "Creando Aplicaciones Interactivas con ReactJS",
+  "source": "codelab.md",
+  "theme": "",
+  "status": null,
+  "category": null,
+  "tags": [],
+  "url": "interactive-app-react"
+}

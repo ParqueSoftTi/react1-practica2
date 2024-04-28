@@ -1,0 +1,360 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Codelab: Creando Aplicaciones Interactivas con ReactJS</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="interactive-app-react"
+                  title="Codelab: Creando Aplicaciones Interactivas con ReactJS"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Resumen" duration="0">
+        <p>En este codelab, aprenderás los conceptos fundamentales de ReactJS, incluyendo componentes, ciclo de vida de componentes y el uso de hooks para la gestión del estado. Al final, habrás construido una pequeña aplicación web interactiva utilizando estos conocimientos.</p>
+<h2 is-upgraded>Objetivos</h2>
+<ul>
+<li>Comprender los conceptos de componentes en ReactJS.</li>
+<li>Explorar el ciclo de vida de los componentes.</li>
+<li>Utilizar hooks para la gestión de estado en una aplicación React.</li>
+</ul>
+<h2 is-upgraded>Requisitos previos</h2>
+<ul>
+<li>Conocimientos básicos de HTML, CSS y JavaScript.</li>
+<li>Un editor de código instalado en tu máquina.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configuración inicial" duration="5">
+        <ol type="1">
+<li>Abre tu terminal y crea un nuevo proyecto de React usando el siguiente comando: <code>npm create vite@latest my-react-app -- --template react</code></li>
+<li>Navega a la carpeta de tu proyecto e inicia el servidor de desarrollo con:</li>
+</ol>
+<pre><code>cd my-react-app
+npm run dev
+</code></pre>
+<ol type="1" start="3">
+<li>Abre tu navegador en <code>http://localhost:$PORT</code> para ver tu aplicación en desarrollo. <code>buscar por $PORT en la consola </code></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Componentes en React" duration="10">
+        <p>En React, los componentes son bloques de construcción fundamentales. Vamos a comenzar creando nuestro primer componente funcional.</p>
+<p><strong>Tarea:</strong></p>
+<ol type="1">
+<li>Crea un nuevo archivo llamado <code>MiComponente.js</code> dentro de la carpeta <code>src</code>.</li>
+<li>Define un componente funcional básico que devuelva un elemento JSX, por ejemplo, un <code><div></code> con un mensaje dentro.</li>
+<li>Importa y utiliza este componente en tu archivo <code>App.js</code>.</li>
+</ol>
+<p>Solución</p>
+<pre><code language="language-javascript" class="language-javascript">// MiComponente.js
+import React from &#39;react&#39;;
+
+const MiComponente = () =&gt; {
+ return &lt;div&gt;Hola, soy un componente React.&lt;/div&gt;;
+};
+
+export default MiComponente;
+
+// App.js
+import React from &#39;react&#39;;
+import MiComponente from &#39;./MiComponente&#39;;
+
+function App() {
+  return (
+    &lt;div className=&#34;App&#34;&gt;
+      &lt;h1&gt;Mi Aplicación React&lt;/h1&gt;
+      &lt;MiComponente /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ciclo de Vida de Componentes" duration="10">
+        <p>Los componentes en React pasan por diferentes fases durante su vida útil. Aprenderemos a utilizar algunos de los métodos del ciclo de vida.</p>
+<p><strong>Tarea:</strong></p>
+<p>Agrega un componente de clase llamado CicloDeVidaComponente que implemente los métodos componentDidMount, componentDidUpdate y componentWillUnmount. Dentro de cada método, imprime un mensaje en la consola para demostrar cuándo se ejecuta cada uno. Observa la consola mientras interactúas con tu aplicación para ver el ciclo de vida en acción.</p>
+<p>Solución</p>
+<pre><code language="language-javascript" class="language-javascript">// CicloDeVidaComponente.js
+import React, { Component } from &#39;react&#39;;
+
+class CicloDeVidaComponente extends Component {
+  componentDidMount() {
+    console.log(&#39;El componente se ha montado.&#39;);
+  }
+
+  componentDidUpdate() {
+    console.log(&#39;El componente se ha actualizado.&#39;);
+  }
+
+  componentWillUnmount() {
+    console.log(&#39;El componente se va a desmontar.&#39;);
+  }
+
+  render() {
+    return &lt;div&gt;Componente con ciclo de vida.&lt;/div&gt;;
+  }
+}
+
+export default CicloDeVidaComponente;
+
+// App.js
+import React from &#39;react&#39;;
+import CicloDeVidaComponente from &#39;./CicloDeVidaComponente&#39;;
+
+function App() {
+  return (
+    &lt;div className=&#34;App&#34;&gt;
+      &lt;h1&gt;Mi Aplicación React&lt;/h1&gt;
+      &lt;CicloDeVidaComponente /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Uso de Hooks para la Gestión de Estado" duration="10">
+        <p>Los hooks en React son una forma moderna de trabajar con el estado y los efectos en los componentes funcionales.</p>
+<p><strong>Tarea:</strong></p>
+<p>Crea un nuevo componente funcional llamado Contador que utilice el hook useState para gestionar un contador. Implementa botones que incrementen y decrementen el valor del contador al hacer clic. Muestra el valor actual del contador en tu componente.</p>
+<p>Solución</p>
+<pre><code language="language-javascript" class="language-javascript">// Contador.js
+import React, { useState } from &#39;react&#39;;
+
+const Contador = () =&gt; {
+  const [contador, setContador] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Contador: {contador}&lt;/h2&gt;
+      &lt;button onClick={() =&gt; setContador(contador + 1)}&gt;Incrementar&lt;/button&gt;
+      &lt;button onClick={() =&gt; setContador(contador - 1)}&gt;Decrementar&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Contador;
+
+// App.js
+import React from &#39;react&#39;;
+import Contador from &#39;./Contador&#39;;
+
+function App() {
+  return (
+    &lt;div className=&#34;App&#34;&gt;
+      &lt;h1&gt;Mi Aplicación React&lt;/h1&gt;
+      &lt;Contador /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Utilizando Props para Pasar Datos entre Componentes" duration="15">
+        <p>En ReactJS, las props son una forma de pasar datos de un componente padre a un componente hijo. Aprenderemos cómo utilizar props para hacer que nuestros componentes sean más dinámicos y reutilizables al pasarles información necesaria.</p>
+<h2 is-upgraded>Diferencia entre Props Destructurados y no Destructurados</h2>
+<p>Cuando se pasan props a un componente en React, se pueden utilizar de dos maneras: destructuradas y no destructuradas. Veamos la diferencia entre ambas:</p>
+<h3 is-upgraded>Props no Destructuradas</h3>
+<p>En el caso de no destructurar las props, necesitamos referenciar las propiedades directamente a través del objeto props. Esto puede ser útil si queremos mantener la claridad sobre qué props se están utilizando en el componente.</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code language="language-javascript" class="language-javascript">// Encabezado.js
+import React from &#34;react&#34;
+
+const Encabezado = (props) =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{props.titulo}&lt;/h1&gt;
+      &lt;p&gt;{props.descripcion}&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Encabezado
+</code></pre>
+<h3 is-upgraded>Props Destructuradas</h3>
+<p>Al utilizar props destructuradas, extraemos directamente las propiedades que necesitamos del objeto props. Esto nos permite utilizar esas propiedades directamente en el componente sin necesidad de referenciar <code>props.propiedad</code>.</p>
+<p><strong>Ejemplo:</strong></p>
+<pre><code language="language-javascript" class="language-javascript">// Encabezado.js
+import React from &#34;react&#34;
+
+const Encabezado = ({ titulo, descripcion }) =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{titulo}&lt;/h1&gt;
+      &lt;p&gt;{descripcion}&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Encabezado
+</code></pre>
+<p><strong>Tarea:</strong></p>
+<ol type="1">
+<li>Modifica el componente <code>Encabezado</code> para que acepte props como <code>titulo</code> y <code>descripcion</code>.</li>
+<li>Pasa estos props al utilizar el componente <code>Encabezado</code> en tu componente principal <code>App</code>.</li>
+<li>Experimenta cambiando los valores de los props para ver cómo afectan la visualización del componente.</li>
+</ol>
+<p>   Solución</p>
+<pre><code language="language-javascript" class="language-javascript">// Encabezado.js
+import React from &#39;react&#39;;
+
+const Encabezado = ({ titulo, descripcion }) =&gt; {
+return (
+
+&lt;div&gt;
+&lt;h1&gt;{titulo}&lt;/h1&gt;
+&lt;p&gt;{descripcion}&lt;/p&gt;
+&lt;/div&gt;
+);
+};
+
+export default Encabezado;
+
+// App.js
+import React from &#39;react&#39;;
+import Encabezado from &#39;./Encabezado&#39;;
+import Cuerpo from &#39;./Cuerpo&#39;;
+
+function App() {
+return (
+
+&lt;div className=&#34;App&#34;&gt;
+&lt;Encabezado titulo=&#34;Mi Aplicación React&#34; descripcion=&#34;Una aplicación increíble construida con ReactJS.&#34; /&gt;
+&lt;Cuerpo /&gt;
+&lt;/div&gt;
+);
+}
+
+export default App;
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Construir Interfaces Compuestas con Componentes" duration="15">
+        <p>En ReactJS, una de las ventajas clave es la capacidad de construir interfaces compuestas, donde los componentes más grandes se construyen a partir de componentes más pequeños y reutilizables. Aprenderemos cómo construir y utilizar interfaces compuestas en nuestra aplicación.</p>
+<p><strong>Tarea:</strong></p>
+<ol type="1">
+<li>Crea un nuevo componente llamado <code>Encabezado</code> que muestre un encabezado con un título y una descripción.</li>
+<li>Crea otro componente llamado <code>Cuerpo</code> que muestre el cuerpo principal de la aplicación con contenido relevante.</li>
+<li>Utiliza estos componentes <code>Encabezado</code> y <code>Cuerpo</code> en tu componente principal <code>App</code> para construir una interfaz compuesta.</li>
+</ol>
+<p>Solución</p>
+<pre><code language="language-javascript" class="language-javascript">// Encabezado.js
+import React from &#39;react&#39;;
+
+const Encabezado = ({ titulo, descripcion }) =&gt; {
+    return (
+        &lt;div&gt;
+            &lt;h1&gt;{titulo}&lt;/h1&gt;
+            &lt;p&gt;{descripcion}&lt;/p&gt;
+        &lt;/div&gt;
+    );
+};
+
+export default Encabezado;
+
+// Cuerpo.js
+import React from &#39;react&#39;;
+
+const Cuerpo = () =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Contenido principal de la aplicación.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Cuerpo;
+
+
+// App.js
+import React from &#39;react&#39;;
+import Encabezado from &#39;./Encabezado&#39;;
+import Cuerpo from &#39;./Cuerpo&#39;;
+
+function App() {
+  return (
+    &lt;div className=&#34;App&#34;&gt;
+      &lt;Encabezado titulo=&#34;Mi Aplicación React&#34; descripcion=&#34;Una aplicación increíble construida con ReactJS.&#34; /&gt;
+      &lt;Cuerpo /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusión" duration="5">
+        <p>¡Felicidades! Has completado este codelab donde aprendiste los conceptos fundamentales de ReactJS. Ahora estás listo para construir aplicaciones web más complejas utilizando componentes, el ciclo de vida de componentes y hooks para la gestión del estado.</p>
+<h2 is-upgraded>Evidencia a entregar</h2>
+<p>Utilice los conceptos de componentes, propiedades y hooks para implementar una landing page (o una version parecida).</p>
+<p>El landing page, debe contener los siguientes elementos:</p>
+<ul>
+<li>Encabezado: Titulo de la página y links de inicio y contacto</li>
+<li>Mensaje de bienvenida</li>
+<li>Botón de ver productos</li>
+</ul>
+<p>¡Recuerda que los componentes en React son creados como pequeños bloques de código que nos ayudan a implementar nuestras interfaces de usuario!</p>
+<p><strong>nota</strong> En esta evidencia el estudiante debe seguir el enfoque de componentes de React, que en pocas palabras nos guia en la Construccion de interfaces de usuario complejas a través de pequeños bloques llamados &#34;Componentes&#34;.</p>
+<p>A continuación verá un ejemplo de como se ve este enfoque graficamente.</p>
+<p class="image-container"><img alt="Components" src="img\\9861e21a626d3f03.webp"></p>
+<p>También, encontrara ejemplos de landing pages</p>
+<p>Ejemplo landing page 1</p>
+<p class="image-container"><img alt="Land page" src="img\\9bbd41be32527095.jpg"></p>
+<p>Ejemplo landing page 2 <img alt="Land page 2" src="img\\558ee685fac9763d.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
